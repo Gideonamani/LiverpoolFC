@@ -1,11 +1,18 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/my-app.html",
+  "shell": "src/lfc-app.html",
   "fragments": [
-    "src/my-view1.html",
-    "src/my-view2.html",
-    "src/my-view3.html",
-    "src/my-view404.html"
+    "src/lfc-home.html",
+    "src/lfc-team.html",
+    "src/lfc-news.html",
+    "src/lfc-social.html",
+    "src/lfc-transfer.html",
+    "src/lfc-trophies.html",
+    "src/lfc-match-thoughts.html",
+    "src/lfc-fans-hall-of-fame.html",
+    "src/lfc-supporters-views.html",
+    "src/lfc-about.html",
+    "src/lfc-view404.html"
   ],
   "sourceGlobs": [
     "src/**/*",
