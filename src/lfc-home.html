@@ -23,28 +23,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
 
-      paper-tabs {
-        color: #eff1b6;
-        background-color: #ff0034;
-      }
-      paper-tabs#pt paper-tab a {
-        height: 100%;
-        text-decoration: none;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        color: #ffffff;
-      }
-      paper-tabs#pt paper-tab a:active {
-        color: #00a398;
-      }
+
     </style>
 
     <app-location route="{{route}}"></app-location>
     <app-route route="{{route}}" pattern="/home/:tabName" data="{{data}}" tail="{{tail}}"></app-route>
 
-    <paper-tabs id="pt" selected="{{tabName}}" noink attr-for-selected="tabname">
+    <paper-tabs class="pt" selected="{{tabName}}" noink attr-for-selected="tabname">
       <paper-tab tabname="fixtures"><a href="/home/fixtures"> Fixtures </a></paper-tab>
       <paper-tab tabname="table"><a href="/home/table"> League Table </a></paper-tab>
       <paper-tab tabname="results"><a href="/home/results"> Results </a></paper-tab>
