@@ -14,6 +14,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../bower_components/neon-animation/neon-animated-pages.html">
 <link rel="import" href="../bower_components/neon-animation/neon-animation.html">
+<link rel="import" href="../bower_components/paper-datatable/paper-datatable.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="lfc-team">
@@ -23,6 +25,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
     </style>
+
+    <iron-ajax
+        auto
+        url="http://api.football-data.org/v1/teams/64/players"
+        handle-as="json"
+        on-response="handleResponse"
+        headers='{"X-Auth-Token": "da8d1d0a187c4a95baa693fcccd16789"}'
+        debounce-duration="300"
+        last-response="{{teamData}}"></iron-ajax>
 
     <app-location route="{{route}}"></app-location>
     <app-route route="{{route}}" pattern="/team/:tabName" data="{{data}}" tail="{{tail}}"></app-route>
@@ -36,12 +47,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       fallback-selection="players" attr-for-selected="tabname">
         <neon-animatable tabname="players">
           <div class="tab-page">
-            <div class="card">
+            <paper-datatable data="{{teamData.players}}">
+              <paper-datatable-column header="Name" property="name" sortable></paper-datatable-column>
+              <paper-datatable-column header="Position" property="position" sortable></paper-datatable-column>
+              <paper-datatable-column header="Birth Date" property="dateOfBirth" sortable></paper-datatable-column>
+              <paper-datatable-column header="Nationality" property="nationality" sortable></paper-datatable-column>
+              <paper-datatable-column header="Contract Expires" property="contractUntil" sortable></paper-datatable-column>
+              <paper-datatable-column header="Market Value" property="marketValue" sortable></paper-datatable-column>
+            </paper-datatable>
+            <!--<div class="card">
                 <div class="circle">11</div>
                 <h1>View Funny</h1>
                 <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
                 <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
-              </div>
+              </div>-->
           </div>
         </neon-animatable>
         <neon-animatable tabname="coaches">
@@ -60,6 +79,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     Polymer({
       is: 'lfc-team',
+      handleResponse: function() {
+        console.log("request sent")
+      }
     });
   </script>
 </dom-module>
