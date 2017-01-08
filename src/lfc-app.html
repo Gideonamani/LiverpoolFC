@@ -26,18 +26,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style>
       :host {
-        --app-primary-color: #4285f4;
-        --app-secondary-color: black;
+        --app-primary-color: #d00027;
+        --app-secondary-color: #00a398;
+        --app-tertiary-color: #fef667;
 
         display: block;
       }
 
       app-header {
-        color: #fff;
+        color: var(--app-tertiary-color);
         background-color: var(--app-primary-color);
       }
-      app-header paper-icon-button {
-        --paper-icon-button-ink-color: white;
+      paper-icon-button#menu-icon {
+        --paper-icon-button-ink-color: var(--app-secondary-color);
+        color: var(--app-secondary-color);
+      }
+
+      app-drawer#drawer app-toolbar {
+        background-color: var(--app-primary-color);
+        color: var(--app-tertiary-color);
       }
 
       .drawer-list {
@@ -53,7 +60,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       .drawer-list a.iron-selected {
-        color: black;
+        color: var(--app-primary-color);
         font-weight: bold;
       }
     </style>
@@ -88,7 +95,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <app-header condenses reveals effects="waterfall">
           <app-toolbar>
-            <paper-icon-button icon="app-icons:menu" drawer-toggle></paper-icon-button>
+            <paper-icon-button id="menu-icon" icon="app-icons:menu" drawer-toggle></paper-icon-button>
             <div main-title>LFC Web App</div>
           </app-toolbar>
         </app-header>
