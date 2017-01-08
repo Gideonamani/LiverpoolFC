@@ -28,10 +28,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <iron-ajax
         auto
-        url="http://api.football-data.org/v1/teams/64/players"
+        url="lfcteam.json"
         handle-as="json"
         on-response="handleResponse"
-        headers='{"X-Auth-Token": "da8d1d0a187c4a95baa693fcccd16789"}'
         debounce-duration="300"
         last-response="{{teamData}}"></iron-ajax>
 
