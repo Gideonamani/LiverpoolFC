@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="lfc-news">
@@ -21,6 +22,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
+    <iron-ajax
+        auto
+        url="lfcnews.json"
+        handle-as="json"
+        on-response="handleResponse"
+        debounce-duration="300"
+        last-response="{{newsData}}"></iron-ajax>
+    
+        <template is="dom-repeat" items={{newsData}} 
+          as=item index-as=index>
+          <div class="card">
+            <div class="circle">[[index]]</div>
+            <h1>[[item.title]]</h1>
+            <p>[[item.shortdesc]]</p>
+            <img src="[[item.imgsrc]]" alt="An image for [[item.title]]">
+            <p>Check out the full article... <a href="[[item.link]]">HERE!</a></p>
+          </div>          
+        </template>
     <div class="card">
       <div class="circle">3</div>
       <h1>View Three</h1>
@@ -32,6 +51,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     Polymer({
       is: 'lfc-news',
+      handleResponse: function(){
+        console.log("The Request is Done.");
+      }
     });
   </script>
 </dom-module>
